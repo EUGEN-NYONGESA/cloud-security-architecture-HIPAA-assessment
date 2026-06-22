@@ -1,0 +1,153 @@
+<svg width="100%" viewBox="0 0 680 620" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Shared responsibility model — cloud provider vs healthcare organization</title>
+  <desc>Visual split of security responsibilities between the cloud provider and the healthcare organization across eight components: physical security, infrastructure, patch management, data encryption, access control, monitoring, network security, and compliance.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: Arial, sans-serif; }
+      .th  { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+      .ts  { font-size: 12px; font-weight: 400; fill: #444; }
+      .hdr { font-size: 13px; font-weight: 700; }
+      .pill{ font-size: 11px; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- ── HEADER COLUMNS ── -->
+  <!-- Cloud Provider header -->
+  <rect x="30" y="20" width="270" height="46" rx="10" fill="#185FA5"/>
+  <text class="hdr" x="165" y="48" text-anchor="middle" fill="#fff">Cloud provider</text>
+
+  <!-- Divider label -->
+  <text class="hdr" x="340" y="48" text-anchor="middle" fill="#444">Component</text>
+
+  <!-- Org header -->
+  <rect x="380" y="20" width="270" height="46" rx="10" fill="#085041"/>
+  <text class="hdr" x="515" y="48" text-anchor="middle" fill="#fff">Healthcare organization</text>
+
+  <!-- Column guide lines -->
+  <line x1="305" y1="70" x2="305" y2="580" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3"/>
+  <line x1="375" y1="70" x2="375" y2="580" stroke="#D3D1C7" stroke-width="0.5" stroke-dasharray="4 3"/>
+
+  <!-- ── ROW DATA ──
+       Each row: provider cell | component pill | org cell
+       Row height: 58px, starting at y=82
+  -->
+
+  <!-- Row 1 – Physical security -->
+  <!-- Provider OWNS fully -->
+  <rect x="32" y="82" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="102" text-anchor="middle" fill="#042C53">Secures data centers:</text>
+  <text class="ts" x="165" y="118" text-anchor="middle" fill="#042C53">biometrics, surveillance, guards</text>
+  <!-- Component pill -->
+  <rect x="307" y="90" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="112" text-anchor="middle" fill="#2C2C2A">Physical</text>
+  <!-- Org: N/A -->
+  <rect x="382" y="82" width="266" height="50" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="ts" x="515" y="111" text-anchor="middle" fill="#888780">N/A — provider owned</text>
+  <!-- Owner dot: provider -->
+  <circle cx="300" cy="107" r="5" fill="#185FA5"/>
+
+  <!-- Row 2 – Infrastructure -->
+  <rect x="32" y="144" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="164" text-anchor="middle" fill="#042C53">Hypervisor, networking,</text>
+  <text class="ts" x="165" y="180" text-anchor="middle" fill="#042C53">hardware maintenance</text>
+  <rect x="307" y="152" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="170" text-anchor="middle" fill="#2C2C2A">Infrastruc.</text>
+  <rect x="382" y="144" width="266" height="50" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="ts" x="515" y="173" text-anchor="middle" fill="#888780">N/A — provider owned</text>
+  <circle cx="300" cy="169" r="5" fill="#185FA5"/>
+
+  <!-- Row 3 – Patch management (SHARED) -->
+  <rect x="32" y="206" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="226" text-anchor="middle" fill="#042C53">Patches hypervisor and</text>
+  <text class="ts" x="165" y="242" text-anchor="middle" fill="#042C53">cloud platform components</text>
+  <rect x="307" y="214" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="232" text-anchor="middle" fill="#2C2C2A">Patching</text>
+  <rect x="382" y="206" width="266" height="50" rx="6" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="ts" x="515" y="226" text-anchor="middle" fill="#04342C">Patches guest OS and</text>
+  <text class="ts" x="515" y="242" text-anchor="middle" fill="#04342C">apps on cloud VMs</text>
+  <!-- SHARED dot (both sides) -->
+  <circle cx="300" cy="231" r="5" fill="#185FA5"/>
+  <circle cx="380" cy="231" r="5" fill="#085041"/>
+
+  <!-- Row 4 – Data encryption (SHARED, org has gap) -->
+  <rect x="32" y="268" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="288" text-anchor="middle" fill="#042C53">Provides encryption tools</text>
+  <text class="ts" x="165" y="304" text-anchor="middle" fill="#042C53">and encrypted storage</text>
+  <rect x="307" y="276" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="290" text-anchor="middle" fill="#2C2C2A">Encryption</text>
+  <text class="pill" x="340" y="304" text-anchor="middle" fill="#2C2C2A">/ keys</text>
+  <!-- Org owns, but has gap -->
+  <rect x="382" y="268" width="266" height="50" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="ts" x="515" y="288" text-anchor="middle" fill="#4A1B0C">Manages keys (fragmented)</text>
+  <text class="ts" x="515" y="304" text-anchor="middle" fill="#993C1D">Backups NOT encrypted</text>
+  <circle cx="300" cy="293" r="5" fill="#185FA5"/>
+  <circle cx="380" cy="293" r="5" fill="#993C1D"/>
+
+  <!-- Row 5 – Access control (ORG, gap present) -->
+  <rect x="32" y="330" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="350" text-anchor="middle" fill="#042C53">Provides IAM tooling</text>
+  <text class="ts" x="165" y="366" text-anchor="middle" fill="#042C53">and MFA capabilities</text>
+  <rect x="307" y="338" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="352" text-anchor="middle" fill="#2C2C2A">Access</text>
+  <text class="pill" x="340" y="366" text-anchor="middle" fill="#2C2C2A">control</text>
+  <rect x="382" y="330" width="266" height="50" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="ts" x="515" y="350" text-anchor="middle" fill="#4A1B0C">No MFA, no access reviews,</text>
+  <text class="ts" x="515" y="366" text-anchor="middle" fill="#993C1D">no deactivation lifecycle</text>
+  <circle cx="380" cy="355" r="5" fill="#993C1D"/>
+
+  <!-- Row 6 – Monitoring (SHARED, gap present) -->
+  <rect x="32" y="392" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="412" text-anchor="middle" fill="#042C53">Provides cloud-native</text>
+  <text class="ts" x="165" y="428" text-anchor="middle" fill="#042C53">monitoring tools</text>
+  <rect x="307" y="400" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="414" text-anchor="middle" fill="#2C2C2A">Monitoring</text>
+  <text class="pill" x="340" y="428" text-anchor="middle" fill="#2C2C2A">/ IR</text>
+  <rect x="382" y="392" width="266" height="50" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="ts" x="515" y="412" text-anchor="middle" fill="#4A1B0C">Logs not centralized;</text>
+  <text class="ts" x="515" y="428" text-anchor="middle" fill="#993C1D">no automated alerting</text>
+  <circle cx="300" cy="417" r="5" fill="#185FA5"/>
+  <circle cx="380" cy="417" r="5" fill="#993C1D"/>
+
+  <!-- Row 7 – Network security (SHARED, gap present) -->
+  <rect x="32" y="454" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="474" text-anchor="middle" fill="#042C53">Physical network, DDoS</text>
+  <text class="ts" x="165" y="490" text-anchor="middle" fill="#042C53">protection, cloud fabric</text>
+  <rect x="307" y="462" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="476" text-anchor="middle" fill="#2C2C2A">Network</text>
+  <text class="pill" x="340" y="490" text-anchor="middle" fill="#2C2C2A">security</text>
+  <rect x="382" y="454" width="266" height="50" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="ts" x="515" y="474" text-anchor="middle" fill="#4A1B0C">VMs internet-exposed;</text>
+  <text class="ts" x="515" y="490" text-anchor="middle" fill="#993C1D">on-prem firewalls outdated</text>
+  <circle cx="300" cy="479" r="5" fill="#185FA5"/>
+  <circle cx="380" cy="479" r="5" fill="#993C1D"/>
+
+  <!-- Row 8 – Compliance / BAA -->
+  <rect x="32" y="516" width="266" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="165" y="536" text-anchor="middle" fill="#042C53">Maintains SOC 2, HIPAA BAA,</text>
+  <text class="ts" x="165" y="552" text-anchor="middle" fill="#042C53">compliance documentation</text>
+  <rect x="307" y="524" width="66" height="34" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="pill" x="340" y="538" text-anchor="middle" fill="#2C2C2A">Compliance</text>
+  <text class="pill" x="340" y="552" text-anchor="middle" fill="#2C2C2A">/ BAA</text>
+  <rect x="382" y="516" width="266" height="50" rx="6" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="ts" x="515" y="536" text-anchor="middle" fill="#04342C">Signs BAA, conducts risk</text>
+  <text class="ts" x="515" y="552" text-anchor="middle" fill="#085041">assessments, owns HIPAA posture</text>
+  <circle cx="300" cy="541" r="5" fill="#185FA5"/>
+  <circle cx="380" cy="541" r="5" fill="#085041"/>
+
+  <!-- ── LEGEND ── -->
+  <rect x="30" y="575" width="620" height="36" rx="6" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+
+  <rect x="48" y="586" width="12" height="12" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="ts" x="66" y="596" fill="#444">Provider responsible</text>
+
+  <rect x="210" y="586" width="12" height="12" rx="2" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="ts" x="228" y="596" fill="#444">Org responsible (implemented)</text>
+
+  <rect x="430" y="586" width="12" height="12" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="ts" x="448" y="596" fill="#444">Org responsible (gap identified)</text>
+
+  <text class="ts" x="340" y="615" text-anchor="middle" fill="#888780">Shared Responsibility Model — Hybrid Healthcare Cloud (Eugen Nyongesa, June 2026)</text>
+</svg>

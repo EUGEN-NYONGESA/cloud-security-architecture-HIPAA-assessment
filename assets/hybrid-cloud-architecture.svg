@@ -1,0 +1,136 @@
+<svg width="100%" viewBox="0 0 680 580" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Hybrid cloud architecture — PHI data flows and security gaps</title>
+  <desc>Diagram showing on-premises and cloud environments, PHI data flows between them, and identified security gaps including unencrypted backups, fragmented key management, and outdated firewalls.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #1a1a1a; }
+      .th  { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+      .ts  { font-size: 12px; font-weight: 400; fill: #444; }
+      .tl  { font-size: 11px; font-weight: 400; fill: #666; }
+      .gap-label { font-size: 11px; font-weight: 500; fill: #993C1D; }
+    </style>
+  </defs>
+
+  <!-- ── ON-PREMISES ZONE ── -->
+  <rect x="30" y="50" width="270" height="370" rx="14"
+        fill="#E1F5EE" stroke="#0F6E56" stroke-width="1" stroke-dasharray="6 3"/>
+  <text class="th" x="165" y="78" text-anchor="middle" fill="#085041">On-premises environment</text>
+  <text class="ts" x="165" y="96" text-anchor="middle" fill="#0F6E56">Sensitive PHI data</text>
+
+  <!-- PHI Database -->
+  <rect x="60" y="115" width="200" height="56" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="th" x="160" y="140" text-anchor="middle" fill="#04342C">PHI database</text>
+  <text class="ts" x="160" y="158" text-anchor="middle" fill="#085041">Patient records (encrypted)</text>
+
+  <!-- EHR Application -->
+  <rect x="60" y="195" width="200" height="56" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="th" x="160" y="220" text-anchor="middle" fill="#04342C">EHR application</text>
+  <text class="ts" x="160" y="238" text-anchor="middle" fill="#085041">Clinical workflows</text>
+
+  <!-- Encryption keys (fragmented) -->
+  <rect x="60" y="275" width="200" height="56" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="th" x="160" y="300" text-anchor="middle" fill="#4A1B0C">On-prem key store</text>
+  <text class="ts" x="160" y="318" text-anchor="middle" fill="#712B13">Siloed key management</text>
+
+  <!-- Outdated firewall -->
+  <rect x="60" y="355" width="200" height="44" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="0.5"/>
+  <text class="th" x="160" y="374" text-anchor="middle" fill="#412402">Legacy firewall</text>
+  <text class="ts" x="160" y="390" text-anchor="middle" fill="#633806">No deep packet inspection</text>
+
+  <!-- ── CLOUD ZONE ── -->
+  <rect x="380" y="50" width="270" height="370" rx="14"
+        fill="#E6F1FB" stroke="#185FA5" stroke-width="1" stroke-dasharray="6 3"/>
+  <text class="th" x="515" y="78" text-anchor="middle" fill="#042C53">Cloud environment</text>
+  <text class="ts" x="515" y="96" text-anchor="middle" fill="#185FA5">Non-critical workloads</text>
+
+  <!-- Cloud VMs -->
+  <rect x="410" y="115" width="210" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="515" y="140" text-anchor="middle" fill="#042C53">Cloud VMs</text>
+  <text class="ts" x="515" y="158" text-anchor="middle" fill="#0C447C">Internet-exposed (IP-restricted)</text>
+
+  <!-- Cloud key store -->
+  <rect x="410" y="195" width="210" height="56" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="th" x="515" y="220" text-anchor="middle" fill="#4A1B0C">Cloud key store</text>
+  <text class="ts" x="515" y="238" text-anchor="middle" fill="#712B13">Siloed key management</text>
+
+  <!-- Cloud backups -->
+  <rect x="410" y="275" width="210" height="56" rx="8" fill="#F7C1C1" stroke="#A32D2D" stroke-width="0.5"/>
+  <text class="th" x="515" y="300" text-anchor="middle" fill="#501313">Cloud backups</text>
+  <text class="ts" x="515" y="318" text-anchor="middle" fill="#791F1F">Not encrypted</text>
+
+  <!-- Provider monitoring -->
+  <rect x="410" y="355" width="210" height="44" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="th" x="515" y="374" text-anchor="middle" fill="#042C53">Provider monitoring</text>
+  <text class="ts" x="515" y="390" text-anchor="middle" fill="#0C447C">Logs not centralized</text>
+
+  <!-- ── DATA FLOW ARROWS ── -->
+  <!-- PHI flow: on-prem DB → cloud (TLS) -->
+  <line x1="262" y1="143" x2="408" y2="143" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arrow)" fill="none"/>
+  <rect x="292" y="128" width="96" height="18" rx="4" fill="#E1F5EE"/>
+  <text class="tl" x="340" y="141" text-anchor="middle" fill="#085041">TLS encrypted</text>
+
+  <!-- Key stores: no connection arrow (dashed) -->
+  <line x1="262" y1="303" x2="408" y2="223" stroke="#993C1D" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+
+  <!-- Backup flow -->
+  <line x1="262" y1="240" x2="408" y2="303" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arrow)" fill="none"/>
+  <rect x="290" y="258" width="100" height="18" rx="4" fill="#FCEBEB"/>
+  <text class="tl" x="340" y="271" text-anchor="middle" fill="#791F1F">Unencrypted</text>
+
+  <!-- ── INTERNET ZONE (top) ── -->
+  <rect x="245" y="8" width="190" height="34" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+  <text class="th" x="340" y="28" text-anchor="middle" fill="#2C2C2A">Internet</text>
+
+  <!-- Internet → cloud VMs -->
+  <line x1="370" y1="25" x2="440" y2="113" stroke="#378ADD" stroke-width="1" marker-end="url(#arrow)" fill="none"/>
+  <text class="tl" x="435" y="65" text-anchor="start" fill="#185FA5">Admin access</text>
+  <text class="tl" x="435" y="78" text-anchor="start" fill="#185FA5">(IP-allowlisted)</text>
+
+  <!-- Internet → on-prem firewall -->
+  <line x1="310" y1="25" x2="200" y2="353" stroke="#888780" stroke-width="1" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- ── GAP CALLOUTS ── -->
+  <!-- Gap 1: Fragmented keys -->
+  <line x1="340" y1="270" x2="340" y2="310" stroke="#993C1D" stroke-width="0.5" stroke-dasharray="3 2"/>
+  <rect x="269" y="310" width="142" height="22" rx="4" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="gap-label" x="340" y="325" text-anchor="middle">Gap: no centralized keys</text>
+
+  <!-- Gap 2: Unencrypted backups -->
+  <rect x="410" y="337" width="210" height="18" rx="4" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+  <text class="gap-label" x="515" y="350" text-anchor="middle">Gap: PHI backups unencrypted</text>
+
+  <!-- Gap 3: Outdated firewall -->
+  <rect x="60" y="406" width="200" height="18" rx="4" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text class="gap-label" x="160" y="419" text-anchor="middle" fill="#633806">Gap: no deep packet inspection</text>
+
+  <!-- Gap 4: Logs not centralized -->
+  <rect x="410" y="406" width="210" height="18" rx="4" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text class="gap-label" x="515" y="419" text-anchor="middle" fill="#185FA5">Gap: hybrid logs not centralized</text>
+
+  <!-- ── LEGEND ── -->
+  <rect x="30" y="450" width="620" height="110" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text class="th" x="50" y="470" fill="#2C2C2A">Legend</text>
+
+  <rect x="50" y="483" width="14" height="14" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="0.5"/>
+  <text class="ts" x="72" y="495" fill="#444">Secured component</text>
+
+  <rect x="200" y="483" width="14" height="14" rx="3" fill="#F5C4B3" stroke="#993C1D" stroke-width="0.5"/>
+  <text class="ts" x="222" y="495" fill="#444">Fragmented / partial control</text>
+
+  <rect x="410" y="483" width="14" height="14" rx="3" fill="#F7C1C1" stroke="#A32D2D" stroke-width="0.5"/>
+  <text class="ts" x="432" y="495" fill="#444">Critical gap</text>
+
+  <line x1="50" y1="523" x2="80" y2="523" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text class="ts" x="88" y="527" fill="#444">Encrypted PHI flow (TLS)</text>
+
+  <line x1="250" y1="523" x2="280" y2="523" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text class="ts" x="288" y="527" fill="#444">Unencrypted data flow</text>
+
+  <line x1="420" y1="523" x2="450" y2="523" stroke="#993C1D" stroke-width="1" stroke-dasharray="4 3"/>
+  <text class="ts" x="458" y="527" fill="#444">Missing connection / control gap</text>
+
+  <text class="ts" x="340" y="550" text-anchor="middle" fill="#888780">Cloud Security Architecture — Hybrid Environment (Eugen Nyongesa, June 2026)</text>
+</svg>
