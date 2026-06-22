@@ -32,6 +32,10 @@ A security assessment of a healthcare organization's **hybrid cloud environment*
 
 The organization has a reasonable security baseline but carries several gaps that affect HIPAA compliance. The most pressing are **unencrypted PHI backups**, **fragmented encryption key management**, and **access control built on manual role management with no reviews**. This assessment documents who owns what across the hybrid estate, scores each control, ties the gaps to specific HIPAA safeguards, and lays out a prioritized fix list.
 
+![Hybrid cloud architecture](assets/hybrid-cloud-architecture.svg)
+
+![Shared responsibility model](assets/shared-responsibility-model.svg)
+
 ---
 
 ## Scenario / Environment
